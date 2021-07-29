@@ -84,7 +84,7 @@
                 }
             },
             save: function (data) {
-                this.$inertia.post('/admin/contacts', data)
+                this.$inertia.post('/admin/Contacts', data)
                 this.reset();
                 this.closeModal();
                 this.editMode = false;
@@ -97,14 +97,14 @@
             update: function (data) {
                 if (!confirm('Sure')) return;
                 data._method = 'PUT';
-                this.$inertia.post('/admin/contacts/' + data.id, data)
+                this.$inertia.post('/admin/Contacts/' + data.id, data)
                 this.reset();
                 this.closeModal();
             },
             deleteRow: function (data) {
                 if (!confirm('Sure')) return;
                 data._method = 'DELETE';
-                this.$inertia.post('/admin/contacts/' + data.id, data)
+                this.$inertia.post('/admin/Contacts/' + data.id, data)
                 this.reset();
                 this.closeModal();
             }

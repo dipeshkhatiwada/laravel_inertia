@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use Inertia\Inertia;
+
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +18,18 @@ use App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+})->name('home');
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/about', [HomeController::class, 'about'])->name('about');
+Route::get('/test', [TestController::class, 'index'])->name('test');
+Route::get('/test/about', [TestController::class, 'about'])->name('about');
+require __DIR__.'/auth.php';

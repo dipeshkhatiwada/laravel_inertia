@@ -1,8 +1,8 @@
 <template>
     <main>
         <header>
-            <a href="/">Welcome </a> /
-            <inertia-link :href="route('home')">Home </inertia-link> / 
+            <inertia-link :href="route('home')">Welcome </inertia-link> /
+            <inertia-link :href="route('test')">Test </inertia-link> /
             <inertia-link :href="route('about')">About </inertia-link>
         </header>
         <slot />
